@@ -1,0 +1,13 @@
+<% if (reviews && reviews.length > 0) { %> <% reviews.forEach(function(review) {
+%>
+<div class="review-card">
+  <div class="review-header">
+    Review for <%= review.chefName %> by <%= review.reviewer %>
+  </div>
+  <div class="review-date">When: <%= review.date.toDateString() %></div>
+  <div class="review-rating">Rating: <%= review.rating %>/5</div>
+  <div class="review-comments"><%= review.comments %></div>
+</div>
+<% }); %> <% } else { %>
+<p>No reviews available at this time.</p>
+<% } %>

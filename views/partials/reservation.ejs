@@ -1,0 +1,16 @@
+<% if (reservations && reservations.length > 0) { %> <%
+reservations.forEach(function(reservation) { %>
+<div class="reservation-card">
+  <div class="reservation-header">Reservation for <%= reservation.name %></div>
+  <div class="reservation-date">
+    Date: <%= reservation.date.toDateString() %>
+  </div>
+  <div class="reservation-time">Time: <%= reservation.time %></div>
+  <div class="reservation-contact">
+    Email: <%= reservation.email %><br />
+    Phone: <%= reservation.phone %>
+  </div>
+</div>
+<% }); %> <% } else { %>
+<p>No reservations available at this time.</p>
+<% } %>

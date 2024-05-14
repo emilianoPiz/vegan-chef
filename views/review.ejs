@@ -1,0 +1,103 @@
+<html lang="en">
+  <%- include('partials/head.ejs')  %>
+  <style>.review-form {
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.review-form h2 {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background-color: #445b2c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.submit-btn:hover {
+    background-color: #556b2c;
+}
+</style>
+    <link rel="stylesheet" href="/public/style.css" />
+
+  <style>
+ 
+  </style>
+  </head>
+
+
+<body>
+  <div class="background">
+
+
+    <%- include('partials/nav.ejs') %>
+    
+<main>
+
+<div class="review-form">
+    <h2>Leave a Review</h2>
+    <form action="/submit-review" method="POST">
+        <div class="form-group">
+            <label for="name" style="color:#3f3f3f">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="rating" style="color:#3f3f3f">Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="" style="color:#3f3f3f">Choose a rating</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="comments" style="color:#3f3f3f">Your Comments:</label>
+            <textarea id="comments" name="comments" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit Review</button>
+    </form>
+</div>
+  
+</main>           
+
+
+
+
+<%- include('partials/footer.ejs') %>
+
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+ 
+  
+</body>
+</html>
