@@ -1,0 +1,10 @@
+<ul>
+  <% eventi.forEach(evento => { %>
+  <li>
+    <h2><%= evento.name %></h2>
+    <p><%= evento.desc %></p>
+    <img src="<%= evento.path %>" alt="<%= evento.name %>" />
+    <p>Data: <%= evento.date %></p>
+  </li>
+  <% }) %>
+</ul>

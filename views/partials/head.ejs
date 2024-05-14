@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Doina Vegan Chef</title>
+    <title>Doina Chef</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,6 +33,25 @@
       href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
     />
     <style>
+      /*time picker zone*/
+      .picker__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        top: 0;
+        justify-content: center;
+      }
+
+      /* Style for each item in the picker */
+      .picker__list-item {
+        display: grid;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        align-items: center;
+        border-bottom: #333 solid 1px;
+      }
+      /*reservation zone*/
       .reservation-card {
         background-color: #f9f9f9;
         border: 1px solid #ccc;
@@ -161,7 +180,6 @@
         backdrop-filter: blur(7px);
         border: 1px solid rgba(255, 255, 255, 0.125);
       }
-
       /* General card styling */
       .card {
         position: relative;
@@ -169,35 +187,56 @@
         transition: transform 0.4s ease, box-shadow 0.4s ease;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         border-radius: 16px;
+        cursor: pointer;
       }
 
       /* Hover effect for the card */
       .card:hover {
         transform: scale(1.05);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 1);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
       }
 
       /* Image styling */
       .card-img-top {
+        width: 100%;
+        height: auto; /* Adjusted for better image display */
         transition: transform 0.4s ease;
       }
 
-      /* Transition for the card body */
-      .card-body {
+      .card:hover .card-img-top {
+        transform: scale(1.1); /* subtle zoom on hover */
+      }
+
+      /* Card overlay for displaying title */
+      .card-overlay {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 16px;
         padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+        color: white;
         transition: opacity 0.4s ease;
-        opacity: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 0 0 16px 16px;
       }
 
-      /* Hide the card body on hover */
-      .card:hover .card-body {
+      .card:hover .card-overlay {
         opacity: 0;
+      }
+
+      /* Responsive and Accessibility Enhancements */
+      @media (max-width: 768px) {
+        .card-img-top {
+          height: auto;
+        }
+      }
+
+      .card[aria-label] {
+        cursor: pointer; /* Improved interaction cue */
       }
 
       /*navbar adjustments*/

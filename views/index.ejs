@@ -17,7 +17,10 @@
 <main>
 
   <%- include('partials/MainContent.ejs') %>
-  
+  <div class=" container"> 
+    <h2 class="glass">what do our costumers say about us?</h2>
+  <%- include('partials/reviews', {reviews: reviews}) %>
+</div>
 </main>           
 
 

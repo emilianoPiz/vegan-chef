@@ -1,5 +1,6 @@
 <html lang="en">
   <%- include('partials/head.ejs') %>
+  <style></style>
 
   <body>
     <div class="background" style="min-height: 800px">
@@ -32,8 +33,14 @@
           format: "yyyy-mm-dd",
         });
         $("#timePicker").pickatime({
-          format: "h:i A",
+          format: "H:i",
           interval: 60, // Adjust as needed
+          min: [10, 0], // Minimum time
+          max: [18, 0], // Maximum time
+          disable: [
+            { from: [1, 0], to: [8, 0] }, // Disable times from 01:00 to 08:00
+            { from: [19, 0], to: [23, 0] }, // Disable times from 16:00 to 23:00
+          ],
         });
       });
     </script>
