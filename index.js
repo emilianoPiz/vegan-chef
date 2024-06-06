@@ -43,28 +43,30 @@ const uri = `mongodb+srv://emilianopizzuti95:${pass}@chefsitedb.tcsakoi.mongodb.
   }
   run().catch(console.dir);
 
-  const modelName = 'reservations';
-  const reservationSchema = new mongoose.Schema({
-      date: { type: Date, required: true },
-      time: { type: String, required: true },
-      name: { type: String, required: true },
-      email: { type: String, required: true, lowercase: true, trim: true },
-      phone: { type: String, required: true, validate: {
-          validator: function(v) { return /\d{10}/.test(v); },
-          message: props => `${props.value} is not a valid phone number!`
-      }}
-  });
-
-const reviewSchema = new mongoose.Schema({
-    chefName: { type: String,  },  // Name of the chef or subject of the review
-    reviewer: { type: String, required: true },  // Name of the person who wrote the review
-    rating: { type: Number, required: true, min: 1, max: 5 },  // Rating given by the reviewer
-    comments: { type: String, required: true },  // Comments provided by the reviewer
-    date: { type: Date, default: Date.now }  // The date when the review was submitted
+// Reservation Schema
+const reservationSchema = new mongoose.Schema({
+  date: { type: Date, required: true },
+  time: { type: String, required: true },
+  name: { type: String, required: true },
+  email: { type: String, required: true, lowercase: true, trim: true },
+  phone: { type: String, required: true, validate: {
+      validator: function(v) { return /\d{10}/.test(v); },
+      message: props => `${props.value} is not a valid phone number!`
+  }}
 });
 
-const Reservation = mongoose.models[modelName] ? mongoose.models[modelName] : mongoose.model(modelName, reservationSchema);
-const Review = mongoose.model('Review', reviewSchema);
+// Review Schema
+const reviewSchema = new mongoose.Schema({
+  chefName: { type: String },  // Name of the chef or subject of the review
+  reviewer: { type: String, required: true },  // Name of the person who wrote the review
+  rating: { type: Number, required: true, min: 1, max: 5 },  // Rating given by the reviewer
+  comments: { type: String, required: true },  // Comments provided by the reviewer
+  date: { type: Date, default: Date.now }  // The date when the review was submitted
+});
+
+// Check if models already exist and use them if they do
+const Reservation = mongoose.models['reservations'] ? mongoose.models['reservations'] : mongoose.model('reservations', reservationSchema);
+const Review = mongoose.models['Review'] ? mongoose.models['Review'] : mongoose.model('Review', reviewSchema);
 
 
 
