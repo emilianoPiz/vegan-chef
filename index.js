@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const server = express();
 const router = express.Router();
-const password = require('./private/private')
+
 //DB
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const mongoose = require('mongoose');
@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 
 //PRENOTATORE
 const AppointmentPicker = require('appointment-picker');
-let pass = password.pass
+let pass = process.env.MONGO_PASS;
 
 // MongoDB connection string  DB STARTS
 const uri = `mongodb+srv://emilianopizzuti95:${pass}@chefsitedb.tcsakoi.mongodb.net/?retryWrites=true&w=majority&appName=chefSiteDB`;
