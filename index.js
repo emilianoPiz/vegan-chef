@@ -42,37 +42,19 @@ const uri = `mongodb+srv://emilianopizzuti95:${pass}@chefsitedb.tcsakoi.mongodb.
     }
   }
   run().catch(console.dir);
-const reservationSchema = new mongoose.Schema({
-  date: {
-    type: Date,
-    required: true
-  },
-  time: {
-    type: String,
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    lowercase: true,
-    trim: true
-  },
-  phone: {
-    type: String,
-    required: true,
-    validate: {
-      validator: function(v) {
-        return /\d{10}/.test(v);
-      },
-      message: props => `${props.value} is not a valid phone number!`
-    }
-  }
 
-});
+  const modelName = 'reservations';
+  const reservationSchema = new mongoose.Schema({
+      date: { type: Date, required: true },
+      time: { type: String, required: true },
+      name: { type: String, required: true },
+      email: { type: String, required: true, lowercase: true, trim: true },
+      phone: { type: String, required: true, validate: {
+          validator: function(v) { return /\d{10}/.test(v); },
+          message: props => `${props.value} is not a valid phone number!`
+      }}
+  });
+
 const reviewSchema = new mongoose.Schema({
     chefName: { type: String,  },  // Name of the chef or subject of the review
     reviewer: { type: String, required: true },  // Name of the person who wrote the review
@@ -81,7 +63,7 @@ const reviewSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now }  // The date when the review was submitted
 });
 
-const Reservation = mongoose.model('reservations', reservationSchema);
+const Reservation = mongoose.models[modelName] ? mongoose.models[modelName] : mongoose.model(modelName, reservationSchema);
 const Review = mongoose.model('Review', reviewSchema);
 
 
